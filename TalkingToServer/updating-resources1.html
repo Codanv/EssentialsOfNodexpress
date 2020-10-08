@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Updating resources</title>
+</head>
+<body>
+    
+    <script>
+        fetch("https://jsonplaceholder.typicode.com/posts/3", {
+            method: "PUT",
+            body: JSON.stringify({
+                title: "Yes to post method",
+                body: "http post method to create resources",
+                userId: 3,
+                id: 3
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }    
+        })
+        .then(respone => respone.json())
+        .then(json => console.log(json))
+        .catch(err => console.log("Something went wrong - while updating"))
+    </script>
+</body>
+</html>
+
+<!-- 
+     a necessary quality of PUT requests is idempotence — the quality of producing the same result even if the same request is made multiple times.
+ -->
+ 

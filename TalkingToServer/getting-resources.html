@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accessing resources - Online Fake REST API</title>
+    <style>
+       table, th, td {
+           border: 3px solid #000000;
+       }
+
+       #users {
+           border-collapse: collapse;
+           border-color: orangered;
+       }
+       
+       th, td {
+           padding: 0.5rem;
+       }
+
+    </style>
+  </head>
+  <body>
+      <!-- how to fetch data from server and display in html -->
+    <h1>Accessing Online Resources</h1>
+    <table id="users"></table>
+    <script>
+        // using fetch api
+        fetch("https://jsonplaceholder.typicode.com/users")
+            .then(userData => userData.json())
+            .then(users => displayUsers(users))
+            .catch(err => console.log('Something went wrong'))
+
+        const displayUsers = (data) => {
+            const tableEle = document.querySelector("#users")
+            tableEle.innerHTML = `<tr>
+                <th>Name</th>
+                <th>username</th>
+                <th>email</th>
+                <th>city</th>
+                <th>street</th>
+            </tr>`
+            for(let i = 0; i < data.length; i++) {
+               tableEle.innerHTML += `<tr>
+                    <td>${data[i].name}</td>
+                    <td>${data[i].username}</td>
+                    <td>${data[i].email}</td>
+                    <td>${data[i].address.city}</td>               
+                    <td>${data[i].address.street}</td>               
+                </tr>
+                `
+            }
+        }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demonstration</title>
+</head>
+<body>
+  <h1>Messages</h1>
+  <div id="msgs"></div>
+  <script>
+
+    /*
+      The Fetch API returns a response stream in the promise. The response stream is not JSON, so trying to call JSON.parse on it will fail. To correctly parse a JSON response, you'll need to use the response.json function. This returns a promise so you can continue the chain.
+    */
+
+    fetch('data.json')
+      .then(response => response.json())
+      .then(messages =>displayMessages(messages))
+      .catch(err => console.log("sth went wrong", err))
+
+    function displayMessages(messages) {
+      const msgsEle = document.querySelector("#msgs")
+
+      for (let msg of messages) {
+        msgsEle.innerHTML += `
+          <h2>${msg.id}</h2>
+          <p>${msg.msg}</p>
+        `
+      }
+      
+    }
+  </script>
+</body>
+</html>

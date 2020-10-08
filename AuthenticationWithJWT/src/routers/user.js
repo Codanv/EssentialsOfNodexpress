@@ -71,5 +71,3 @@ router.post('/users/me/logoutall', auth, async(req, res) => {
 })
 
 module.exports = router
-
-// https://medium.com/swlh/jwt-authentication-authorization-in-nodejs-express-mongodb-rest-apis-2019-ad14ec818122
